@@ -1,6 +1,6 @@
 /******************************************************************************************************
     Title : ExpressionEvaluator (https://github.com/codingseb/ExpressionEvaluator)
-    Version : 1.4.11.0 
+    Version : (2.0.0.Alpha) In progress 
     (if last digit (the forth) is not a zero, the version is an intermediate version and can be unstable)
 
     Author : Coding Seb
@@ -2420,8 +2420,16 @@ namespace CodingSeb.ExpressionEvaluator
             if (match.Success)
             {
                 string op = match.Value;
-                stack.Push(operatorsDictionary[op]);
+                ExpressionOperator expressionOperator = operatorsDictionary[op];
+                stack.Push(expressionOperator);
                 i += op.Length - 1;
+
+                if(expressionOperator==ExpressionOperator.ConditionalAnd || expressionOperator == ExpressionOperator.ConditionalAnd)
+                {
+                    stack.Push(new SubExpression(expression.Substring(i + 1)));
+                    i = expression.Length - 1;
+                }
+
                 return true;
             }
 

@@ -1111,6 +1111,13 @@ namespace CodingSeb.ExpressionEvaluator.Tests
                 yield return new TestCaseData("nullVar?[1][3]", onInstanceVariables, true).SetCategory("Instance Property,Null Conditional indexing").Returns(null);
                 yield return new TestCaseData("simpleArray2?[3]?.Trim()", onInstanceVariables, true).SetCategory("Instance Property,Null Conditional indexing").Returns(null);
 
+                yield return new TestCaseData("false && 1/0 == 0", onInstanceVariables, true).SetCategory("Instance Property,And Conditional").Returns(false);
+                yield return new TestCaseData("!string.IsNullOrEmpty(nullVar) && nullVar.StartsWith(\"ABC\")", onInstanceVariables, true).SetCategory("Instance Property,And Conditional").Returns(false);
+                yield return new TestCaseData("string.IsNullOrEmpty(nullVar) || nullVar.StartsWith(\"ABC\")", onInstanceVariables, true).SetCategory("Instance Property,Or Conditional").Returns(true);
+                yield return new TestCaseData("true || 1/0 == 0", onInstanceVariables, true).SetCategory("Instance Property,Or Conditional").Returns(true);
+                yield return new TestCaseData("false && true || true", onInstanceVariables, true).SetCategory("Instance Property,Or Conditional,And Conditional,Precedence check").Returns(true);
+                yield return new TestCaseData("true || true && false", onInstanceVariables, true).SetCategory("Instance Property,Or Conditional,And Conditional,Precedence check").Returns(true);
+
                 yield return new TestCaseData("simpleInt.ToString()", onInstanceVariables, true).SetCategory("Instance Method").Returns("42");
                 yield return new TestCaseData("simpleInt.ToString().Length", onInstanceVariables, true).SetCategory("Instance Method,Instance Property").Returns(2);
 
