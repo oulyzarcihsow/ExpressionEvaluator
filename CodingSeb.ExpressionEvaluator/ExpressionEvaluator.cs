@@ -2481,15 +2481,8 @@ namespace CodingSeb.ExpressionEvaluator
             if (match.Success)
             {
                 string op = match.Value;
-                ExpressionOperator expressionOperator = operatorsDictionary[op];
-                stack.Push(expressionOperator);
+                stack.Push(operatorsDictionary[op]);
                 i += op.Length - 1;
-
-                if(expressionOperator==ExpressionOperator.ConditionalAnd || expressionOperator == ExpressionOperator.ConditionalAnd)
-                {
-                    stack.Push(new SubExpression(expression.Substring(i + 1)));
-                    i = expression.Length - 1;
-                }
 
                 return true;
             }
