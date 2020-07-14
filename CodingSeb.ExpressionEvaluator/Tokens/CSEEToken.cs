@@ -5,7 +5,7 @@
     Licence : MIT (https://github.com/codingseb/ExpressionEvaluator/blob/master/LICENSE.md)
 *******************************************************************************************************/
 
-namespace CodingSeb.ExpressionEvaluator
+namespace CodingSeb.ExpressionEvaluator.Tokens
 {
     /// <summary>
     /// Represent a ExpressionEvaluator language token. The basic element for the syntaxic tree.
