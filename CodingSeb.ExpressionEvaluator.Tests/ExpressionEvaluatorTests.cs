@@ -418,6 +418,14 @@ namespace CodingSeb.ExpressionEvaluator.Tests
         [TestCase("~10", TestOf = typeof(int), ExpectedResult = -11, Category = "BitwiseComplement")]
         #endregion
 
+        #region multiple unary operators
+
+        [TestCase("-~0", TestOf = typeof(int), ExpectedResult = 10, Category = "BitwiseComplement MultipleUnaryOperators")]
+        [TestCase("+-+-+0", TestOf = typeof(int), ExpectedResult = 10, Category = "MultipleUnaryOperators")]
+        [TestCase("+-+-+2", TestOf = typeof(int), ExpectedResult = 10, Category = "MultipleUnaryOperators")]
+
+        #endregion
+
         #region SimpleModulo
         [TestCase("-4 % 2", TestOf = typeof(int), ExpectedResult = 0, Category = "SimpleModulo")]
         [TestCase("-3 % 2", TestOf = typeof(int), ExpectedResult = -1, Category = "SimpleModulo")]
